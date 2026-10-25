@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070b12">
+<title>NEXUS // Autonomous Trader</title>
+<meta name="application-name" content="Autonomous AI Trader">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="topline"><span class="brand-mark">N<span>X</span></span><div class="brand-copy"><strong>NEXUS <em>TRADING SYSTEMS</em></strong><small>AUTONOMOUS DIGITAL ASSET TERMINAL</small></div><div class="top-meta"><span class="live-dot"></span><span id="connection-label">CONNECTING</span><span class="meta-divider"></span><span id="clock">--:--:-- UK</span></div></div>
+<div id="banner" class="banner paper"><span class="banner-label">EXECUTION MODE</span><strong>LOADING…</strong><span class="banner-tail">SYSTEM INITIALISING</span></div>
+<div class="ticker-strip"><span>MARKET MONITOR</span><span>•</span><span>RISK ENGINE</span><span>•</span><span>AI DECISION CORE</span><span>•</span><span>EXCHANGE FEED</span><span class="ticker-spacer"></span><span class="refresh-indicator"><i></i> LIVE STATE REFRESH</span></div>
+<main>
+  <section id="agent-floor" class="panel agent-floor-panel">
+    <div class="panel-head"><div><span class="eyebrow">00 / MULTI-AGENT COMMAND FLOOR</span><h2>FOMO × GROK · Agent operations</h2></div><span id="floor-status" class="panel-tag">WAITING FOR TELEMETRY</span></div>
+    <div class="floor-top-grid">
+      <div class="floor-side floor-performance"><div class="floor-subhead">ACCOUNT TELEMETRY <span>LIVE</span></div>
+        <div class="floor-stat"><span>ACCOUNT EQUITY</span><strong id="floor-equity">—</strong></div>
+        <div class="floor-stat"><span>SESSION P&amp;L</span><strong id="floor-pnl">—</strong></div>
+        <div class="floor-stat"><span>WIN RATE</span><strong id="floor-winrate">—</strong></div>
+        <div class="floor-stat"><span>ACTIVE PAIR</span><strong id="floor-symbol">—</strong></div>
+        <div class="floor-subhead activity-head">ACTIVITY LOG <span id="floor-event-count">0 EVENTS</span></div>
+        <div id="floor-activity" class="floor-activity" aria-live="polite"><div class="floor-log-entry muted">Waiting for bot events…</div></div>
+      </div>
+      <div class="floor-centre"><div class="floor-subhead">MARKET DISPLAY <span id="floor-chart-symbol">NO SYMBOL</span></div>
+        <div class="market-screen"><div class="market-screen-head"><div><strong id="floor-chart-price">—</strong><span id="floor-chart-change">LIVE MARKET SNAPSHOT</span></div><div class="screen-badges"><span id="floor-trend-1h">1H —</span><span id="floor-trend-5m">5M —</span></div></div>
+          <div id="floor-chart" class="floor-chart"><div class="chart-placeholder"><span class="chart-cross">＋</span><strong>Waiting for candle history</strong><small>Live prices and technical readings are shown when available. No synthetic candles.</small></div></div>
+          <div class="market-screen-foot"><span id="floor-setup">SETUP: WAITING</span><span id="floor-volatility">ATR: —</span><span id="floor-funding">FUNDING: —</span></div>
+        </div>
+        <div class="floor-subhead desk-head">AGENT WORKSTATIONS <span>SELECT A DESK TO INSPECT LATEST FINDINGS</span></div>
+        <div id="agent-desks" class="agent-desks"></div>
+      </div>
+      <div class="floor-side floor-inspector"><div class="floor-subhead">SELECTED AGENT <span id="inspector-status">IDLE</span></div>
+        <div class="inspector-avatar" id="inspector-avatar">NX</div><strong id="inspector-name" class="inspector-name">Waiting for agent telemetry</strong><div id="inspector-role" class="inspector-role">Agent details will appear here.</div>
+        <div class="inspector-block"><span>LAST ACTION / OBSERVATION</span><p id="inspector-action">No agent report received yet.</p></div>
+        <div class="inspector-block"><span>FINDINGS / FLAGS</span><p id="inspector-findings">Waiting for current review.</p></div>
+        <div class="inspector-block"><span>TRADE GATE</span><p id="inspector-gate">The independent risk engine remains authoritative.</p></div>
+        <div class="floor-subhead decision-head">LATEST DECISION <span id="floor-decision-chip">WAIT</span></div>
+        <div id="floor-decision" class="floor-decision">No decision reported.</div>
+      </div>
+    </div>
+    <div class="floor-legend"><span><i class="legend-dot working"></i> REVIEW / ACTIVE</span><span><i class="legend-dot clear"></i> CHECK PASSED</span><span><i class="legend-dot caution"></i> WARNING / LIMITED DATA</span><span><i class="legend-dot blocked"></i> REJECTED / HALTED</span><span class="floor-disclaimer">Observable actions and findings only, not hidden chain-of-thought.</span></div>
+  </section>
+  <section id="system-panel" class="panel system-panel"><div class="panel-head"><div><span class="eyebrow">01 / CORE</span><h2>System status</h2></div><span class="panel-icon">◈</span></div><div id="system" class="grid"></div><div id="gate" class="gate-note small"></div></section>
+  <section id="overview-panel" class="panel overview-panel"><div class="panel-head"><div><span class="eyebrow">02 / OVERVIEW</span><h2>Account telemetry</h2></div><span class="panel-tag">LIVE SNAPSHOT</span></div><div id="overview" class="overview-grid"><div class="metric"><span>ACCOUNT EQUITY</span><strong id="metric-equity">—</strong><small>USDT</small></div><div class="metric"><span>DAILY REALISED P/L</span><strong id="metric-pnl">—</strong><small>SESSION RESULT</small></div><div class="metric"><span>WIN RATE</span><strong id="metric-winrate">—</strong><small>RECORDED TRADES</small></div><div class="metric"><span>ACTIVE MARKET</span><strong id="metric-symbol">—</strong><small id="metric-scan">SCANNER STATUS</small></div></div><div class="overview-foot"><span><i class="tiny-dot"></i> Values from bot state</span><span id="uptime-label">UPTIME —</span></div></section>
+  <section id="market-panel" class="panel market-panel"><div class="panel-head"><div><span class="eyebrow">03 / MARKET FEED</span><h2>Market intelligence</h2></div><span class="panel-icon">⌁</span></div><div id="market" class="grid"></div></section>
+  <section id="ai-panel" class="panel ai-panel"><div class="panel-head"><div><span class="eyebrow">04 / DECISION CORE</span><h2>AI decision</h2></div><span id="decision-chip" class="decision-chip">AWAITING DATA</span></div><div id="ai" class="grid"></div></section>
+  <section id="scanner-panel" class="panel scanner-panel"><div class="panel-head"><div><span class="eyebrow">05 / OPPORTUNITY MAP</span><h2>Market scanner</h2></div><span class="panel-tag">RANKED CANDIDATES</span></div><p id="scanner-note" class="small">Waiting for scan…</p><div id="scanner" class="scanner-list"></div></section>
+  <section id="position-panel" class="panel position-panel"><div class="panel-head"><div><span class="eyebrow">06 / EXPOSURE</span><h2>Open position</h2></div><span class="panel-icon">⌖</span></div><div id="position" class="grid"></div></section>
+  <section id="risk-panel" class="panel risk-panel"><div class="panel-head"><div><span class="eyebrow">07 / PROTECTION</span><h2>Risk monitor</h2></div><span class="panel-tag">GUARDRAILS</span></div><div id="risk" class="grid"></div></section>
+  <section id="intel-panel" class="panel intel-panel"><div class="panel-head"><div><span class="eyebrow">08 / EXTERNAL SIGNALS</span><h2>News & network intelligence</h2></div><span class="panel-icon">⌘</span></div><p id="intel-note" class="small">Waiting for intelligence scan…</p><div id="intel" class="intel-list"></div></section>
+  <section id="controls-panel" class="panel controls-panel"><div class="panel-head"><div><span class="eyebrow">09 / OPERATOR</span><h2>Command console</h2></div><span class="panel-tag">LOCAL CONTROL</span></div><div class="controls-grid"><button onclick="ctl('pause')"><span>Ⅱ</span>Pause trading</button><button onclick="ctl('resume')"><span>▷</span>Resume trading</button><button onclick="ctl('test_ai')"><span>✳</span>Test AI</button><button onclick="ctl('refresh')"><span>↻</span>Refresh connection</button><button class="danger" onclick="ctl('emergency_close')"><span>!</span>Emergency close</button></div><pre id="ctlout" class="small console-output">Awaiting operator command.</pre></section>
+  <section id="events-panel" class="panel events-panel"><div class="panel-head"><div><span class="eyebrow">10 / AUDIT TRAIL</span><h2>Recent events</h2></div><span class="panel-tag">LATEST FIRST</span></div><pre id="events" class="event-log small">—</pre></section>
+  <section id="trades-panel" class="panel trades-panel"><div class="panel-head"><div><span class="eyebrow">11 / HISTORY</span><h2>Recent closed trades</h2></div><span class="panel-tag">TRADE RECORD</span></div><div id="trades" class="trade-log small">—</div></section>
+</main>
+<footer><span>NEXUS / AUTONOMOUS TRADER</span><span>LOCAL DASHBOARD · NOT AN EXCHANGE GUARANTEE</span></footer>
+<script src="/static/app.js"></script>
+</body></html>

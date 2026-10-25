@@ -1,0 +1,4 @@
+# Runtime dependencies (the bot's own code uses the Python standard library for everything else)
+PyYAML>=6.0          # reads config/config.yaml
+python-dotenv>=1.0   # reads your .env file
+pybit>=5.7.0         # Bybit WebSocket streams (REST trading uses a built-in signed client)

@@ -1,0 +1,95 @@
+# autonomous_ai_trader configuration.  Edit values here; no Python editing needed.
+# Safe defaults: PAPER mode, trading disabled, autonomous disabled.
+mode: PAPER           # Safe development default: PAPER | TESTNET | LIVE
+symbol: XMRUSDT
+category: linear
+scanner:
+  max_candidates_to_evaluate: 0  # 0 = technically evaluate every pair passing liquidity/spread filters; positive number caps evaluations
+multi_agent:
+  enabled: true       # Run lightweight specialist reviewers concurrently before the main AI decision
+  max_workers: 6      # Maximum specialist tasks; does not launch extra Ollama models
+timeframes:
+  structure: "60"      # 1 hour
+  entry: "5"           # 5 minutes
+  confirm: "15"        # optional confirmation
+  candles_to_load: 300
+risk:
+  risk_per_trade_percent: 0.5
+  max_daily_loss_percent: 2.0
+  max_account_drawdown_percent: 5.0
+  max_daily_trades: 10
+  max_open_positions: 1
+  min_risk_reward: 2.0
+  max_leverage: 1
+  max_consecutive_losses: 4      # 0 = disabled
+  max_spread_percent: 0.05
+  max_data_age_seconds: 90
+  min_stop_atr_mult: 0.8         # reject stops tighter than this x ATR
+  max_stop_atr_mult: 3.5         # reject stops wider than this x ATR
+  max_entry_deviation_atr: 1.5   # LIMIT entry may not be farther than this x ATR from price
+  plan_max_distance_atr: 6.0     # a PLAN limit may rest this far, still on the pullback side
+  plan_default_valid_minutes: 60 # used when the model omits how long a plan may wait
+  abnormal_atr_ratio: 3.0        # ATR(now)/ATR(median) above this = abnormal volatility
+  max_position_notional_usdt: 50  # 0 = no extra cap beyond leverage
+strategy:
+  atr_period: 14
+  swing_lookback: 13
+  fvg_min_atr_mult: 0.5
+  fvg_max_age_candles: 100
+  ob_displacement_atr_mult: 0.2
+  ob_max_age_candles: 80
+  equal_level_tolerance_atr: 0.15
+  proximity_atr: 1.5             # a live trigger requires price within this x ATR of a zone
+  plan_max_atr: 6.0              # a fresh pullback zone this far away is handed to the AI as a PLAN
+  plan_fresh_fill_pct: 0.2       # a fair-value gap counts as fresh only below this fill
+  plan_ask_cooldown_seconds: 900 # ask the AI about a plan at most once per 15 minutes per coin
+  volume_avg_period: 30
+tp:
+  mode: trailing                  # fixed_rr | partial | trailing
+  rr: 3.0
+  partial_percent: 50
+  partial_at_rr: 1.0
+trailing:
+  enabled: true
+  atr_multiplier: 0.9
+  activate_at_rr: 1.0
+ai:
+  provider: ollama
+  host: http://127.0.0.1:11434
+  model: llama3.2:latest                    # auto = chosen by setup from your RAM; or e.g. qwen3:14b
+  temperature: 0.1
+  context_length: 8192
+  timeout_seconds: 90
+  max_retries: 1
+  thinking: true                 # use the model's reasoning mode where supported (slower)
+  use_tools: false                # let the model call read-only data tools (slower; snapshot already has the data)
+  min_confidence: 80
+  strong_confidence: 90
+execution:
+  analysis_interval_seconds: 300
+  evaluate_on_5m_close: true
+  order_timeout_seconds: 20
+  sl_confirm_timeout_seconds: 10
+  slippage_percent_paper: 0.02
+  taker_fee_percent: 0.055
+  maker_fee_percent: 0.02
+  limit_order_ttl_seconds: 300   # unfilled LIMIT entries are cancelled after this
+  loop_interval_seconds: 5       # how often positions/market are monitored
+  require_websocket: true        # TESTNET/LIVE: no new trades while the WebSocket is unhealthy
+paper:
+  starting_equity: 1000
+launchd:
+  allow_live_autostart: false    # must be true before the Mac may auto-start LIVE trading
+alerts:
+  telegram_enabled: false
+dashboard:
+  host: 127.0.0.1
+  port: 8080
+  display_timezone: Europe/London
+logging:
+  directory: logs
+  level: INFO
+  max_bytes: 5242880
+  backup_count: 5
+database:
+  path: data/trader.db

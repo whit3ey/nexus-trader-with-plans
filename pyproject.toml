@@ -1,0 +1,9 @@
+[project]
+name = "autonomous-ai-trader"
+version = "1.0.0"
+description = "Local-AI (Ollama) assisted Bybit USDT-perpetual trading system with a deterministic risk engine"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0", "python-dotenv>=1.0", "pybit>=5.7.0"]
+
+[tool.setuptools]
+packages = ["bot", "bot.ai", "bot.exchange", "bot.strategy", "bot.risk", "bot.execution", "bot.database", "bot.monitoring", "bot.backtest", "dashboard"]
